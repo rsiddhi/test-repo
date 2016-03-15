@@ -19,11 +19,12 @@ Installing App
 Install laravel using homestead. Follow the instruction give in their [official site](https://laravel.com/docs/5.1/homestead).
 
 After Laravel installation, follow the steps below:
-  -clone the repo or download the repo
-  -map a "domain" to the folder on your Homestead environment
-  -do vagrant reload from command line(use Git Bash)
-  -add the "domains" for your Nginx sites to the hosts file on your machine
-  -run the vagrant up command from your Homestead directory
-  -go to shh shell
-  -perform composer update
-  -access the repo from the domain name that you have mapped before
+
+  * clone the repo or download the repo
+  * map a "domain" to the folder on your Homestead environment
+  * do vagrant reload from command line(use Git Bash)
+  * add the "domains" for your Nginx sites to the hosts file on your machine
+  * run the vagrant up command from your Homestead directory
+  * go to shh shell
+  * perform composer update
+  * access the repo from the domain name that you have mapped before

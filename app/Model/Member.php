@@ -1,5 +1,8 @@
 <?php namespace App\Model;
 
+use Exception;
+use Config;
+
 class Member {
 
 	private $name = '';
@@ -15,7 +18,7 @@ class Member {
 	public function set_name($name){
 
 		if($name == null || $name == ''){
-			throw new \Exception("Name is required.");
+			throw new Exception("Name is required.");
 		}
 
 		$this->name = $name;
@@ -30,7 +33,7 @@ class Member {
 	public function set_phone($phone){
 
 		if(!preg_match('/^[0-9]+$/', $phone)){
-			throw new \Exception("A valid phone number is required");
+			throw new Exception("A valid phone number is required");
 		}
 		
 		$this->phone = $phone;
@@ -41,7 +44,7 @@ class Member {
 		$email = trim($email);
 
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			throw new \Exception('The email chosen is invalid.');
+			throw new Exception('The email chosen is invalid.');
 		}
 
 		$this->email = $email;
@@ -133,10 +136,10 @@ class Member {
 
 	private function save(){
 
-		$file_path = \Config::get('constants.CSV_FILE_PATH');
+		$file_path = Config::get('constants.CSV_FILE_PATH');
 
 		if(!is_file($file_path)){
-			throw new \Exception("Error in saving data to file!");
+			throw new Exception("Error in saving data to file!");
 		}
 
 		$file = fopen($file_path, 'a');  

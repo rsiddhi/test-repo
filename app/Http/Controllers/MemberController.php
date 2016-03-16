@@ -4,36 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Model\Member as Member;
+use App\Model\MemberSearch as MemberSearch;
 
-class MemberController extends Controller {
+class MemberController extends Controller 
+{
 
-	public function index(){
+	public function index(Request $request)
+	{
 
 		$bspaginator = new \App\Library\Bspaginator;
 
-		$member_search = new \App\Model\MemberSearch();
+		$memberSearch = new MemberSearch();
 
-		if(isset($_GET['page'])){
+		if($request->get('page')){
 
-			$member_search->current_page = $_GET['page'];
+			$memberSearch->current_page = $_GET['page'];
 		}
 
-		$members = $member_search->search();
+		$members = $memberSearch->search();
 
 		return view('member/index',array(
 						'title'=>'Members',
 						'bspaginator'=>$bspaginator,
 						'members' => $members,
-						'total_members' => $member_search->get_total_rows()
+						'total_members' => $memberSearch->get_totalRows()
 					)
 				);
 	}
 
-	public function create(Request $request){
+	public function create(Request $request)
+	{
 
 		try{
 
-			if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+			if (!$request->isMethod('post')) {
 				return view('member/create',array('title'=>'Create Member'));
             }          
 
@@ -49,11 +54,9 @@ class MemberController extends Controller {
 				'mode_of_contact' => $request->get('mode_of_contact')
 			);
 
-			// print_r($params);exit;
+			$member = Member::create($params);
 
-			$member = \App\Model\Member::create($params);
-
-			\Session::flash('message', 'Member '.$member->get_name().' is created successfully');
+			$request->session()->flash('message', 'Member '.$member->get_name().' is created successfully');
 
 			return redirect('members');
 

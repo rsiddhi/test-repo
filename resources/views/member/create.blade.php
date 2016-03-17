@@ -69,8 +69,9 @@
 	    <label for="mode_of_contact" class="col-sm-2 control-label">Mode of Contact </label>
 	    <div class="col-sm-2">
 	      <select class="form-control" id="mode_of_contact" name="mode_of_contact">
-	      	<option value="sms">sms</option>
-	      	<option value="emial">email</option>
+	      	<option value="phone">phone</option>
+	      	<option value="email">email</option>
+	      	<option value="none">none</option>
 	      </select>
 	    </div>
 	</div>       	

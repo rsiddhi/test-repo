@@ -10,12 +10,12 @@ class Member {
 	private $phone = '';
 	private $email = '';
 	private $address = '';
-	private $education_background = '';
+	private $educationBackground = '';
 	private $nationality = '';
 	private $dob = '';
-	private $mode_of_contact = array();
+	private $modeOfContact = array();
 
-	public function set_name($name){
+	public function setName($name){
 
 		if($name == null || $name == ''){
 			throw new Exception("Name is required.");
@@ -24,13 +24,13 @@ class Member {
 		$this->name = $name;
 	}
 
-	public function set_gender($gender){
+	public function setGender($gender){
 
 		$this->gender = $gender;
 
 	}
 
-	public function set_phone($phone){
+	public function setPhone($phone){
 
 		if(!preg_match('/^[0-9]+$/', $phone)){
 			throw new Exception("A valid phone number is required");
@@ -39,7 +39,7 @@ class Member {
 		$this->phone = $phone;
 	}
 
-	public function set_email($email){
+	public function setEmail($email){
 
 		$email = trim($email);
 
@@ -50,84 +50,84 @@ class Member {
 		$this->email = $email;
 	}
 
-	public function set_address($address){
+	public function setAddress($address){
 
 		$this->address = $address;
 
 	}
 
-	public function set_nationality($nationality){
+	public function setNationality($nationality){
 		$this->nationality = $nationality;
 	}
 
-	public function set_dob($dob){
+	public function setDob($dob){
 		$this->dob = $dob;
 	}
 
-	public function set_education_background($education_background){
-		$this->education_background = $education_background;
+	public function setEducationBackground($educationBackground){
+		$this->educationBackground = $educationBackground;
 	}
 
-	public function set_mode_of_contact($mode_of_contact){
-		$this->mode_of_contact = $mode_of_contact;
+	public function setModeOfContact($modeOfContact){
+		$this->modeOfContact = $modeOfContact;
 	}
 
-	public function get_name(){
+	public function getName(){
 
 		return $this->name;
 	}
 
-	public function get_gender(){
+	public function getGender(){
 
 		return $this->gender;
 
 	}
 
-	public function get_phone(){
+	public function getPhone(){
 
 		return $this->phone;
 	}
 
-	public function get_email(){
+	public function getEmail(){
 
 		return $this->email;
 	}
 
-	public function get_address(){
+	public function getAddress(){
 
 		return $this->address;
 
 	}
 
-	public function get_nationality(){
+	public function getNationality(){
 		return $this->nationality;
 	}
 
-	public function get_dob(){
+	public function getDob(){
 		return $this->dob;
 	}
 
-	public function get_education_background(){
-		return $this->education_background;
+	public function getEducationBackground(){
+		return $this->educationBackground;
 	}
 
-	public function get_mode_of_contact(){
-		return $this->mode_of_contact;
+	public function getModeOfContact(){
+		return $this->modeOfContact;
 	}
 
 	public static function create($params){
 
 		$member = new Member();
 
-		$member->set_name($params['name']);
-		$member->set_gender($params['gender']);
-		$member->set_phone($params['phone']);
-		$member->set_email($params['email']);
-		$member->set_address($params['address']);
-		$member->set_nationality($params['nationality']);
-		$member->set_dob($params['dob']);
-		$member->set_education_background($params['education_background']);
-		$member->set_mode_of_contact($params['mode_of_contact']);
+		$member->setName($params['name']);
+		$member->setGender($params['gender']);
+		$member->setPhone($params['phone']);
+		$member->setEmail($params['email']);
+		$member->setAddress($params['address']);
+		$member->setNationality($params['nationality']);
+		$member->setDob($params['dob']);
+		$member->setEducationBackground($params['educationBackground']);
+		$member->setModeOfContact($params['modeOfContact']);
 
 		$member->save();
  		
@@ -154,8 +154,8 @@ class Member {
 				$this->address,
 				$this->nationality,
 				$this->dob,
-				$this->education_background,
-				$this->mode_of_contact
+				$this->educationBackground,
+				$this->modeOfContact
 			)
 		);
 

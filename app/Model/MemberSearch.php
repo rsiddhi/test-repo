@@ -1,6 +1,7 @@
 <?php namespace App\Model;
 
 use Config;
+use Exception;
 
 class MemberSearch {
 
@@ -21,6 +22,10 @@ class MemberSearch {
 		$end = $this->currentPage * $this->perPage;
 		
 		$lineCounter = 1;
+
+		if(!is_file(Config::get('constants.CSV_FILE_PATH'))){
+			throw new Exception("Error in saving data to file!");
+		}
 
 		$rows = file(Config::get('constants.CSV_FILE_PATH'));
 

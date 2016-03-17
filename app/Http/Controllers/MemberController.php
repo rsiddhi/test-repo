@@ -12,25 +12,40 @@ class MemberController extends Controller
 
 	public function index(Request $request)
 	{
+		try{
+			$bspaginator = new \App\Library\Bspaginator;
 
-		$bspaginator = new \App\Library\Bspaginator;
+			$memberSearch = new MemberSearch();
 
-		$memberSearch = new MemberSearch();
+			if($request->get('page')){
 
-		if($request->get('page')){
+				$memberSearch->current_page = $_GET['page'];
+			}
 
-			$memberSearch->current_page = $_GET['page'];
+			$members = $memberSearch->search();
+
+			return view('member/index',array(
+							'title'=>'Members',
+							'bspaginator'=>$bspaginator,
+							'members' => $members,
+							'total_members' => $memberSearch->get_totalRows()
+						)
+					);
+
+		} catch(\Exception $e){
+
+			\Log::info(date("Y-m-d H:i:s")."==>".$e->getMessage());
+
+			return view('member/index',array(
+							'title'=>'Members',
+							'bspaginator'=>$bspaginator,
+							'members' => array(),
+							'total_members' => 0,
+							'error_message' => "Error!!"
+						)
+					);
 		}
-
-		$members = $memberSearch->search();
-
-		return view('member/index',array(
-						'title'=>'Members',
-						'bspaginator'=>$bspaginator,
-						'members' => $members,
-						'total_members' => $memberSearch->get_totalRows()
-					)
-				);
+		
 	}
 
 	public function create(Request $request)
@@ -61,6 +76,8 @@ class MemberController extends Controller
 			return redirect('members');
 
 		} catch(\Exception $e){
+
+			\Log::info(date("Y-m-d H:i:s")."==>".$e->getMessage());
 
 			return view('member/create',array(
 					'title'=>'Create Member',
